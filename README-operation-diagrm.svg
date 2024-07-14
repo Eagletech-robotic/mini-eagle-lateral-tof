@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Wall -->
+  <line x1="0" y1="50" x2="400" y2="50" stroke="black" stroke-width="2"/>
+  <text x="10" y="40" font-size="12">Wall</text>
+  
+  <!-- 50cm line -->
+  <line x1="0" y1="150" x2="400" y2="150" stroke="gray" stroke-dasharray="5,5"/>
+  <text x="10" y="165" font-size="12">50cm</text>
+  
+  <!-- Robot path -->
+  <path d="M50,250 L150,150 Q200,120 250,110 T350,105" fill="none" stroke="blue" stroke-width="2"/>
+  
+  <!-- Robot at start -->
+  <rect x="40" y="240" width="20" height="20" fill="red" transform="rotate(-45, 50, 250)"/>
+  <text x="30" y="275" font-size="12">Start</text>
+  
+  <!-- Robot during turn -->
+  <rect x="190" y="115" width="20" height="20" fill="red" transform="rotate(-20, 200, 125)"/>
+  
+  <!-- Robot at end -->
+  <rect x="340" y="95" width="20" height="20" fill="red"/>
+  
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="blue"/>
+    </marker>
+  </defs>
+  <line x1="70" y1="230" x2="120" y2="180" stroke="blue" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="340" y1="105" x2="370" y2="105" stroke="blue" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Labels -->
+  <text x="95" y="220" font-size="12">1. Initial movement</text>
+  <text x="30" y="125" font-size="12">2. Detect the wall, start turning</text>
+  <text x="270" y="80" font-size="12">3. Stay parallel to the wall</text>
+</svg>

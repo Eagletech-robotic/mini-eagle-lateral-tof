@@ -8,6 +8,10 @@ Mini Eagle is a prototype robot developed by the French EagleTech robotics team,
 
 In this project, the Mini Eagle robot uses motor control and a Time-of-Flight (TOF) sensor looking to its left to maintain a constant distance from a wall using PID (Proportional-Integral-Derivative) control.
 
+As soon it is powered on, the robot immediately starts moving ahead. As soon as it detects a long straight object at close range (< 50 cm), it changes its orientation to stay parallel to the object.
+
+![Mini Eagle Operation Diagram](./README-operation-diagrm.svg)
+
 ## Hardware Requirements
 
 - STM32F401RE microcontroller board
@@ -37,10 +41,6 @@ In this project, the Mini Eagle robot uses motor control and a Time-of-Flight (T
 1. Build the project in STM32CubeIDE
 2. Connect your STM32 board
 3. Flash the program to the board
-
-## Usage
-
-After powering on the board, the robot will immediately start moving ahead. As soon as it detects a long straight object at close range (< 50 cm), it will change its orientation to stay parallel to the object.
 
 ## License
 
