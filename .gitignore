@@ -1,0 +1,32 @@
+# Build output directories
+/Debug/
+/Release/
+
+# IDE-specific files
+*.launch
+.mxproject
+
+# Object files and binaries
+*.o
+*.elf
+*.bin
+*.hex
+
+# Dependency files
+*.d
+
+# Backup files
+*.bak
+
+# Temporary files
+*.tmp
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+/.settings/
+
+# Keep the .gitignore file itself
+!.gitignore
