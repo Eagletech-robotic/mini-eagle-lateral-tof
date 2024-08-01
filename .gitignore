@@ -5,6 +5,7 @@
 # IDE-specific files
 *.launch
 .mxproject
+.vscode
 
 # Object files and binaries
 *.o

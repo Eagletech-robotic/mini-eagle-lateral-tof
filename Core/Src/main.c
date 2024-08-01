@@ -22,6 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "motor_control.h"
 
 /* USER CODE END Includes */
 
@@ -97,8 +98,9 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM5_Init();
   MX_TOF_Init();
-  /* USER CODE BEGIN 2 */
 
+  /* USER CODE BEGIN 2 */
+  testMotors();
   /* USER CODE END 2 */
 
   /* Infinite loop */
