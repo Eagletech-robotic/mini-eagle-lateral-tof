@@ -1,10 +1,6 @@
 #ifndef INC_MOTOR_CONTROL_H_
 #define INC_MOTOR_CONTROL_H_
 
-#include "main.h"
-
-extern TIM_HandleTypeDef htim3;
-
 typedef struct {
 	GPIO_TypeDef *output1_Port;
 	uint16_t output1_Pin;

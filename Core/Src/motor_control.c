@@ -36,8 +36,8 @@ void setMotor(Motor *motor, int speed) {
 /** Play a simple demo sequence to confirm that motors are working correctly. */
 void testMotors() {
 	// 1. Move forward
-	setMotor(&motorLeft, 100);
-	setMotor(&motorRight, 100);
+	setMotor(&motorLeft, TIM3_PERIOD);
+	setMotor(&motorRight, TIM3_PERIOD);
 	HAL_Delay(2000);  // Run for 2 seconds
 
 	// 2. Stop
@@ -46,8 +46,8 @@ void testMotors() {
 	HAL_Delay(1000);  // Pause for 1 second
 
 	// 3. Move backward
-	setMotor(&motorLeft, -100);
-	setMotor(&motorRight, -100);
+	setMotor(&motorLeft, -TIM3_PERIOD);
+	setMotor(&motorRight, -TIM3_PERIOD);
 	HAL_Delay(2000);  // Run for 2 seconds
 
 	// 4. Stop
@@ -56,8 +56,8 @@ void testMotors() {
 	HAL_Delay(1000);  // Pause for 1 second
 
 	// 5. Turn left (right motor forward, left motor backward)
-	setMotor(&motorLeft, -75);
-	setMotor(&motorRight, 75);
+	setMotor(&motorLeft, -TIM3_PERIOD * 0.5);
+	setMotor(&motorRight, TIM3_PERIOD * 0.5);
 	HAL_Delay(1500);  // Turn for 1.5 seconds
 
 	// 6. Stop

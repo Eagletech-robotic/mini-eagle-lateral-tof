@@ -42,7 +42,11 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
+extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim4;
+extern TIM_HandleTypeDef htim5;
 
+#define TIM3_PERIOD 0xFFFF
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/
