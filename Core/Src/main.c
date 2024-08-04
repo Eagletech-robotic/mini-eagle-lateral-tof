@@ -17,6 +17,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <stdio.h>
 #include "main.h"
 #include "app_tof.h"
 
@@ -83,13 +84,15 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+
+  // Initialize Virtual COM Port
+  BSP_COM_Init(COM1);
 
   /* USER CODE END SysInit */
 
@@ -98,10 +101,21 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_TIM5_Init();
-  MX_TOF_Init();
 
   /* USER CODE BEGIN 2 */
+
+  // Test TOF until the blue button is pressed
+  initTofSensor();
+  printf("Starting TOF sensor test. Press the blue button to stop.\r\n");
+  testTofUntilButtonPressed();
+  printf("TOF sensor test stopped.\r\n");
+
+  // Test motors
+  printf("Motor test starting...\r\n");
+  HAL_Delay(2000);
   testMotors();
+  printf("Motor test complete.\r\n");
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
