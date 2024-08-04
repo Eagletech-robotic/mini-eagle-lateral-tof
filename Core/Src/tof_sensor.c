@@ -62,10 +62,9 @@ void testTofUntilButtonPressed(void)
 {
     // Start ranging
     status = VL53L4A2_RANGING_SENSOR_Start(VL53L4A2_DEV_CENTER, RS_MODE_BLOCKING_CONTINUOUS);
-
     if (status != BSP_ERROR_NONE)
     {
-        printf("Starting the TOF failed. Powering the board off and on usually fixes the issue.\r\n");
+        printf("Failed to start the TOF sensor (status = %d). Powering the board off and on usually fixes the issue.\r\n", status);
         while (1)
             ;
     }
@@ -78,8 +77,18 @@ void testTofUntilButtonPressed(void)
         {
             print_result(&Result);
         }
+        else
+        {
+            printf("Error reading the TOF sensor (status = %d)\r\n", status);
+        }
 
         HAL_Delay(POLLING_PERIOD);
+    }
+
+    status = VL53L4A2_RANGING_SENSOR_Stop(VL53L4A2_DEV_CENTER);
+    if (status != BSP_ERROR_NONE)
+    {
+        printf("Failed to stop the TOF sensor (status = %d)\r\n", status);
     }
 }
 

@@ -103,12 +103,12 @@ static void MX_53L4A2_SimpleRanging_Init(void)
   HAL_GPIO_WritePin(VL53L4A2_XSHUT_C_PORT, VL53L4A2_XSHUT_C_PIN, GPIO_PIN_SET);
   HAL_Delay(2);
 
-  printf("53L4A2 Simple Ranging demo application\r\n");
+  printf("53L4A2 Simple Ranging demo application\n");
   status = VL53L4A2_RANGING_SENSOR_Init(VL53L4A2_DEV_CENTER);
 
   if (status != BSP_ERROR_NONE)
   {
-    printf("VL53L4A2_RANGING_SENSOR_Init failed\r\n");
+    printf("VL53L4A2_RANGING_SENSOR_Init failed\n");
     while (1);
   }
 }
@@ -162,7 +162,7 @@ static void print_result(RANGING_SENSOR_Result_t *Result)
 
     for (j = 0; j < Result->ZoneResult[i].NumberOfTargets; j++)
     {
-      printf("\r\n |---> ");
+      printf("\n |---> ");
 
       printf("Status = %ld, Distance = %5ld mm ",
              (long)Result->ZoneResult[i].Status[j],
@@ -179,7 +179,7 @@ static void print_result(RANGING_SENSOR_Result_t *Result)
                (long)decimal_part(Result->ZoneResult[i].Signal[j]));
     }
   }
-  printf("\r\n");
+  printf("\n");
 }
 
 static int32_t decimal_part(float_t x)
