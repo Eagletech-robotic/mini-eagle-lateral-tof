@@ -9,6 +9,7 @@ typedef struct {
 	GPIO_TypeDef *enable_Port;
 	uint16_t enable_Pin;
 	uint32_t timer3_Channel;
+	TIM_TypeDef *encoderTimer;
 } Motor;
 
 extern Motor motorLeft;

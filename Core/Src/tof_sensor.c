@@ -17,6 +17,15 @@ static RANGING_SENSOR_Result_t Result;
 static void print_result(RANGING_SENSOR_Result_t *Result);
 static int32_t decimal_part(float_t x);
 
+void haltAndBlink(void)
+{
+    while (1)
+    {
+        HAL_GPIO_TogglePin(GreenLED_GPIO_Port, GreenLED_Pin);
+        HAL_Delay(200);
+    }
+}
+
 void initTofSensor(void)
 {
     // Reset XSHUT (XSDN) pin
@@ -36,8 +45,7 @@ void initTofSensor(void)
     {
         printf("Initialisation failed - powering the board off and on usually fixes the issue.\r\n");
         printf("The program will halt here\r\n");
-        while (1)
-            ;
+        haltAndBlink();
     }
 
     // Determine ID and capabilities of the ranging sensor
@@ -64,9 +72,8 @@ void testTofUntilButtonPressed(void)
     status = VL53L4A2_RANGING_SENSOR_Start(VL53L4A2_DEV_CENTER, RS_MODE_BLOCKING_CONTINUOUS);
     if (status != BSP_ERROR_NONE)
     {
-        printf("Failed to start the TOF sensor (status = %d). Powering the board off and on usually fixes the issue.\r\n", status);
-        while (1)
-            ;
+        printf("Failed to start the TOF sensor (status = %ld). Powering the board off and on usually fixes the issue.\r\n", status);
+        haltAndBlink();
     }
 
     while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET)
@@ -79,7 +86,7 @@ void testTofUntilButtonPressed(void)
         }
         else
         {
-            printf("Error reading the TOF sensor (status = %d)\r\n", status);
+            printf("Error reading the TOF sensor (status = %ld)\r\n", status);
         }
 
         HAL_Delay(POLLING_PERIOD);
@@ -88,7 +95,7 @@ void testTofUntilButtonPressed(void)
     status = VL53L4A2_RANGING_SENSOR_Stop(VL53L4A2_DEV_CENTER);
     if (status != BSP_ERROR_NONE)
     {
-        printf("Failed to stop the TOF sensor (status = %d)\r\n", status);
+        printf("Failed to stop the TOF sensor (status = %ld)\r\n", status);
     }
 }
 
