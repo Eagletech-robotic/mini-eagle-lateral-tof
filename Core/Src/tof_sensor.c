@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 #include "53l4a2_ranging_sensor.h"
-#include "app_tof_pin_conf.h"
-#include "stm32f4xx_nucleo.h"
+#include "main.h"
+#include "stm32f4xx_hal.h"
 #include "tof_sensor.h"
 
 #define TIMING_BUDGET (30U)   /* 8 ms < TimingBudget < 200 ms */
@@ -29,9 +29,9 @@ void haltAndBlink(void)
 void initTofSensor(void)
 {
     // Reset XSHUT (XSDN) pin
-    HAL_GPIO_WritePin(VL53L4A2_XSHUT_C_PORT, VL53L4A2_XSHUT_C_PIN, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GreenLED_GPIO_Port, GreenLED_Pin, GPIO_PIN_RESET);
     HAL_Delay(2);
-    HAL_GPIO_WritePin(VL53L4A2_XSHUT_C_PORT, VL53L4A2_XSHUT_C_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GreenLED_GPIO_Port, GreenLED_Pin, GPIO_PIN_SET);
     HAL_Delay(2);
 
     printf("Initialising the 53L4A2 TOF sensor\r\n");
