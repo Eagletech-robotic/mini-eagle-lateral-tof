@@ -29,7 +29,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
-#include "stm32f4xx_nucleo.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -64,7 +63,9 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define BSP_BUTTON_EXTI_IRQn EXTI15_10_IRQn
+#define B1_Pin GPIO_PIN_13
+#define B1_GPIO_Port GPIOC
+#define B1_EXTI_IRQn EXTI15_10_IRQn
 #define MotorL_encoder1_Pin GPIO_PIN_0
 #define MotorL_encoder1_GPIO_Port GPIOA
 #define MotorL_encoder2_Pin GPIO_PIN_1
