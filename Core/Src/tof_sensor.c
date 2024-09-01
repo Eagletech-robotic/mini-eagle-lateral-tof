@@ -64,18 +64,21 @@ void initTofSensor(void)
     Profile.EnableAmbient = 1; /* Enable: 1, Disable: 0 */
     Profile.EnableSignal = 1;  /* Enable: 1, Disable: 0 */
     VL53L4A2_RANGING_SENSOR_ConfigProfile(VL53L4A2_DEV_CENTER, &Profile);
-}
 
-void testTofUntilButtonPressed(void)
-{
-    // Start ranging
+    // Start the sensor
     status = VL53L4A2_RANGING_SENSOR_Start(VL53L4A2_DEV_CENTER, RS_MODE_BLOCKING_CONTINUOUS);
     if (status != BSP_ERROR_NONE)
     {
         printf("Failed to start the TOF sensor (status = %ld). Powering the board off and on usually fixes the issue.\r\n", status);
         haltAndBlink();
     }
+}
 
+void testTofUntilButtonPressed(void)
+{
+    printf("Starting TOF sensor test. Press the blue button to stop.\r\n");
+
+    // Start ranging
     while (HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13) == GPIO_PIN_SET)
     {
         status = VL53L4A2_RANGING_SENSOR_GetDistance(VL53L4A2_DEV_CENTER, &Result);
@@ -92,11 +95,7 @@ void testTofUntilButtonPressed(void)
         HAL_Delay(POLLING_PERIOD);
     }
 
-    status = VL53L4A2_RANGING_SENSOR_Stop(VL53L4A2_DEV_CENTER);
-    if (status != BSP_ERROR_NONE)
-    {
-        printf("Failed to stop the TOF sensor (status = %ld)\r\n", status);
-    }
+    printf("TOF sensor test stopped.\r\n");
 }
 
 static void print_result(RANGING_SENSOR_Result_t *Result)
@@ -135,4 +134,27 @@ static int32_t decimal_part(float_t x)
 {
     int32_t int_part = (int32_t)x;
     return (int32_t)((x - int_part) * 100);
+}
+
+/*
+ * Read the distance from the TOF sensor.
+ * @return The distance in mm, or 0 if no target is detected.
+ * @note We assume that the sensor has a single zone and is only detecting one target.
+ */
+uint32_t readFirstTargetDistance(void)
+{
+    status = VL53L4A2_RANGING_SENSOR_GetDistance(VL53L4A2_DEV_CENTER, &Result);
+
+    if (status == BSP_ERROR_NONE)
+    {
+        if (Result.ZoneResult[0].NumberOfTargets == 0)
+            return 0;
+        else
+            return Result.ZoneResult[0].Distance[0];
+    }
+    else
+    {
+        printf("Error reading the TOF sensor (status = %ld)\r\n", status);
+        return 0;
+    }
 }

@@ -109,17 +109,14 @@ int main(void)
   HAL_TIM_Encoder_Start(&htim4, TIM_CHANNEL_ALL);
   HAL_TIM_Encoder_Start(&htim5, TIM_CHANNEL_ALL);
 
-  // Test TOF until the blue button is pressed
   initTofSensor();
-  printf("Starting TOF sensor test. Press the blue button to stop.\r\n");
-  testTofUntilButtonPressed();
-  printf("TOF sensor test stopped.\r\n");
 
-  // Test motors
-  printf("Motor test starting...\r\n");
-  HAL_Delay(2000);
+  // Tests
+  testTofUntilButtonPressed();
   testMotors();
-  printf("Motor test complete.\r\n");
+
+  // Start the main loop
+  mainLoop();
 
   /* USER CODE END 2 */
 
