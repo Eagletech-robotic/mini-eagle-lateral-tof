@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "motor_control.h"
+#include "robot_control.h"
 #include "tof_sensor.h"
 
 /* USER CODE END Includes */
@@ -94,7 +95,7 @@ int main(void)
   /* USER CODE BEGIN SysInit */
 
   // Initialize Virtual COM Port
-  //BSP_COM_Init(COM1);
+  // BSP_COM_Init(COM1);
 
   /* USER CODE END SysInit */
 
@@ -431,10 +432,10 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 /**
-  * @brief  Retargets the C library printf function to the USART.
-  *   None
-  * @retval None
-  */
+ * @brief  Retargets the C library printf function to the USART.
+ *   None
+ * @retval None
+ */
 int __io_putchar(int ch)
 {
   /* Place your implementation of fputc here */
