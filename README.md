@@ -42,6 +42,14 @@ As soon it is powered on, the robot immediately starts moving ahead. As soon as 
 2. Connect your STM32 board
 3. Flash the program to the board
 
+## Development Notes
+
+STM32CubeIDE generates codes with DOS line endings. To convert them to Unix line endings, run the following command in the project directory:
+
+```bash
+find . \( -name "*.c" -o -name "*.h" -o -name "*.txt" -o -name "*.html" \) -type f -exec dos2unix {} \;
+```
+
 ## License
 
 This project is licensed under the MIT License.
