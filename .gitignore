@@ -28,6 +28,7 @@ Thumbs.db
 
 # IDE settings
 /.settings/
+.idea
 
 # Keep the .gitignore file itself
 !.gitignore
