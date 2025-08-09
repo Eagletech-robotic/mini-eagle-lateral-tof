@@ -69,7 +69,9 @@ void setMotor(int motorNb, float speed)
 						  GPIO_PIN_RESET);
 	}
 
-	__HAL_TIM_SET_COMPARE(&htim3, motor->timer3_Channel, abs((int32_t)(speed * TIM3_PERIOD)));
+	int value = abs((int32_t)(speed * TIM3_PERIOD));
+	printf("Setting motor %d speed to %.2f, value: %d\r\n", motorNb, speed, value);
+	__HAL_TIM_SET_COMPARE(&htim3, motor->timer3_Channel, value);
 }
 
 void printEncoderDeltas(uint16_t *leftCNT, uint16_t *rightCNT)
